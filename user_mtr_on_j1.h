@@ -163,6 +163,11 @@ extern "C" {
 //! \brief Depends on needed dynamic performance, FAST provides very good results as low as 1 KHz while more dynamic or high speed applications may require up to 15 KHz
 #define USER_NUM_CTRL_TICKS_PER_EST_TICK       (1)      // 1 Typical, FAST estimator runs at same rate as CTRL;
 
+//! \brief Defines the number of controller clock ticks per positon converter clock tick
+//! Relationship of controller clock rate to position converter loop rate
+//! Decrease this value, if speed estimate given by SpinTAC Positon Converter overflows.
+#define USER_NUM_CTRL_TICKS_PER_POSCONV_TICK  (3)   // Should be at least 3kHz to support velocities up to 7500 rpm.
+
 //! \brief Defines the number of controller clock ticks per speed controller clock tick
 //! \brief Relationship of controller clock rate to speed loop rate
 #define USER_NUM_CTRL_TICKS_PER_SPEED_TICK  (10)   // 15 Typical to match PWM, ex: 15KHz PWM, controller, and current loop, 1KHz speed loop
