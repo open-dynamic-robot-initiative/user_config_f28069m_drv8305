@@ -53,7 +53,7 @@
 
 
 // select whether to use the inverter on connector J1 or J5 of the LaunchPad
-#define J1
+#define J5
 
 
 // platforms
@@ -154,7 +154,7 @@ extern "C" {
 //! \brief Defines the starting maximum acceleration AND deceleration for the speed profiles, Hz/s
 //! \brief Updated in run-time through user functions
 //! \brief Inverter, motor, inertia, and load will limit actual acceleration capability
-#define USER_MAX_ACCEL_Hzps                 (17.0)      // Given by excel spreadsheet. Default: 20.0
+#define USER_MAX_ACCEL_Hzps                 (19.0)      // Given by excel spreadsheet. Default: 20.0
 
 //! \brief Defines maximum acceleration for the estimation speed profiles, Hz/s
 //! \brief Only used during Motor ID (commission)

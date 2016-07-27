@@ -60,12 +60,8 @@ extern "C" {
 //! \brief Defines the full scale frequency for IQ variable, Hz
 //! \brief All frequencies are converted into (pu) based on the ratio to this value
 //! \brief this value MUST be larger than the maximum speed that you are expecting from the motor
-#ifndef QEP
-#define USER_IQ_FULL_SCALE_FREQ_Hz        (800.0)   // 800 Example with buffer for 8-pole 6 KRPM motor to be run to 10 KRPM with field weakening; Hz =(RPM * Poles) / 120
-#else
 //#define USER_IQ_FULL_SCALE_FREQ_Hz        (USER_MOTOR_NUM_POLE_PAIRS/0.008)   // (4/0.008) = 500 Example with buffer for 8-pole 6 KRPM motor to be run to 6 KRPM; Hz = (RPM * Poles) / 120
 #define USER_IQ_FULL_SCALE_FREQ_Hz        (1310.0)   // value given by the excel spreadsheet
-#endif
 
 //! \brief Defines full scale value for the IQ30 variable of Voltage inside the system
 //! \brief All voltages are converted into (pu) based on the ratio to this value
@@ -336,21 +332,17 @@ extern "C" {
 #elif (USER_MOTOR == TMotor_Antigravity_4004_300kv)
 
 
-#define AMD_SETUP_ULTHEMIUS_WITH_LEVER 1
-#define AMD_SETUP_AVAGON    2
-#define CURRENT_AMD_SETUP AMD_SETUP_ULTHEMIUS_WITH_LEVER
+#define AMD_SETUP_ULTHEMIUS_WITH_LEVER  1
+#define AMD_SETUP_AVAGON_500            2
+#define AMD_SETUP_AVAGON_5000           3
+#define CURRENT_AMD_SETUP AMD_SETUP_AVAGON_5000
 
 #define USER_MOTOR_TYPE                 MOTOR_Type_Pm
 #define USER_MOTOR_NUM_POLE_PAIRS       (12)
-//#define USER_MOTOR_Rr                   (NULL)
-//#define USER_MOTOR_Rs                   (NULL)
-//#define USER_MOTOR_Ls_d                 (NULL)
-//#define USER_MOTOR_Ls_q                 (NULL)
-//#define USER_MOTOR_RATED_FLUX           (NULL)
 #define USER_MOTOR_Rr                   (0.0)
 #define USER_MOTOR_Rs                   (0.2324751)
-#define USER_MOTOR_Ls_d                 (0.0001393645)
-#define USER_MOTOR_Ls_q                 (0.0001393645)
+#define USER_MOTOR_Ls_d                 (0.0001509179) // A3
+#define USER_MOTOR_Ls_q                 (0.0001509179)
 #define USER_MOTOR_RATED_FLUX           (0.009390805)
 #define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
 #define USER_MOTOR_RES_EST_CURRENT      (1.0)
@@ -366,13 +358,20 @@ extern "C" {
 #define USER_SYSTEM_INERTIA             (0.04644596577)  // determined with lab12a
 #define USER_SYSTEM_FRICTION            (0.2327181697)  // determined with lab12a
 
-#elif (CURRENT_AMD_SETUP == AMD_SETUP_AVAGON)
+#elif (CURRENT_AMD_SETUP == AMD_SETUP_AVAGON_500)
 
-#define USER_MOTOR_ENCODER_LINES		(500.0) // Ulthemius with 2:1 gear ratio
+#define USER_MOTOR_ENCODER_LINES		(500.0)
 //#define USER_SYSTEM_INERTIA             (0.02889186144)  // determined in lab05c. Default 0.02
 //#define USER_SYSTEM_FRICTION            (0.04102557898)  // determined in lab05c. Default 0.01
 #define USER_SYSTEM_INERTIA             (0.02391791343688965)  // determined with lab12a
 #define USER_SYSTEM_FRICTION            (0.042265355587005615)  // determined with lab12a
+
+#elif (CURRENT_AMD_SETUP == AMD_SETUP_AVAGON_5000)
+
+#define USER_MOTOR_ENCODER_LINES		(5000.0)
+#define USER_SYSTEM_INERTIA             (0.12937843799591064)  // determined with lab12a
+#define USER_SYSTEM_FRICTION            (0.10034477710723877)  // determined with lab12a
+
 
 #else
 #error No AMD setup specified
