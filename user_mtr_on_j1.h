@@ -159,7 +159,7 @@ extern "C" {
 //! \brief Defines the number of controller clock ticks per positon converter clock tick
 //! Relationship of controller clock rate to position converter loop rate
 //! Decrease this value, if speed estimate given by SpinTAC Positon Converter overflows.
-#define USER_NUM_CTRL_TICKS_PER_POSCONV_TICK  (3)   // Should be at least 3kHz to support velocities up to 7500 rpm.
+#define USER_NUM_CTRL_TICKS_PER_POSCONV_TICK  (1)   // Should be at least 3kHz to support velocities up to 7500 rpm.
 
 //! \brief Defines the number of controller clock ticks per speed controller clock tick
 //! \brief Relationship of controller clock rate to speed loop rate
