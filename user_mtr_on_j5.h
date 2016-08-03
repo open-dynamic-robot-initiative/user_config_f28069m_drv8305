@@ -236,7 +236,7 @@ extern "C" {
 #define USER_MOTOR_Ls_q_2                 (0.0001509179)
 #define USER_MOTOR_RATED_FLUX_2           (0.009390805)
 #define USER_MOTOR_MAGNETIZING_CURRENT_2  (NULL)
-#define USER_MOTOR_RES_EST_CURRENT_2      (1.0)
+#define USER_MOTOR_RES_EST_CURRENT_2      (3.0)
 #define USER_MOTOR_IND_EST_CURRENT_2      (-1.0)
 #define USER_MOTOR_MAX_CURRENT_2          (9.0)
 #define USER_MOTOR_FLUX_EST_FREQ_Hz_2     (120.0) // Given by excel spreadsheet. Default 20.
