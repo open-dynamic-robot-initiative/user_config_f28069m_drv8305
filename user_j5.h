@@ -335,6 +335,7 @@ extern "C" {
 #define AMD_SETUP_ULTHEMIUS_WITH_LEVER  1
 #define AMD_SETUP_AVAGON_500            2
 #define AMD_SETUP_AVAGON_5000           3
+#define AMD_SETUP_ULTHEMIUS             4
 #define CURRENT_AMD_SETUP AMD_SETUP_AVAGON_5000
 
 #define USER_MOTOR_TYPE                 MOTOR_Type_Pm
@@ -357,6 +358,12 @@ extern "C" {
 #define USER_MOTOR_ENCODER_LINES		(20000.0)
 #define USER_SYSTEM_INERTIA             (0.04644596577)  // determined with lab12a
 #define USER_SYSTEM_FRICTION            (0.2327181697)  // determined with lab12a
+
+#elif (CURRENT_AMD_SETUP == AMD_SETUP_ULTHEMIUS)
+
+#define USER_MOTOR_ENCODER_LINES		(20000.0)
+#define USER_SYSTEM_INERTIA             (0.02391791343688965)  // copied from avagon 500
+#define USER_SYSTEM_FRICTION            (0.042265355587005615)  // copied from avagon 500
 
 #elif (CURRENT_AMD_SETUP == AMD_SETUP_AVAGON_500)
 
