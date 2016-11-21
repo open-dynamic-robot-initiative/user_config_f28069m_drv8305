@@ -1,3 +1,10 @@
+/*
+ * ===========================================================================
+ * This file contains configuation for the motor on J1 when using DUAL MOTOR
+ * applications.
+ * ===========================================================================
+ *
+ */
 #ifndef _USER_J1_H_
 #define _USER_J1_H_
 /* --COPYRIGHT--,BSD
@@ -225,10 +232,6 @@ extern "C" {
 
 #if (USER_MOTOR == TMotor_Antigravity_4004_300kv)
 
-#define AMD_SETUP_ULTHEMIUS_WITH_LEVER  1
-#define AMD_SETUP_AVAGON_500            2
-#define AMD_SETUP_AVAGON_5000           3
-#define CURRENT_AMD_SETUP AMD_SETUP_AVAGON_5000
 
 #define USER_MOTOR_TYPE                 MOTOR_Type_Pm
 #define USER_MOTOR_NUM_POLE_PAIRS       (12)
@@ -243,31 +246,10 @@ extern "C" {
 #define USER_MOTOR_MAX_CURRENT          (9.0)
 #define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
 #define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
-
-
-#if (CURRENT_AMD_SETUP == AMD_SETUP_ULTHEMIUS_WITH_LEVER)
-
-#define USER_MOTOR_ENCODER_LINES		(20000.0)
-#define USER_SYSTEM_INERTIA             (0.04644596577)  // determined with lab12a
-#define USER_SYSTEM_FRICTION            (0.2327181697)  // determined with lab12a
-
-#elif (CURRENT_AMD_SETUP == AMD_SETUP_AVAGON_500)
-
-#define USER_MOTOR_ENCODER_LINES		(500.0)
-//#define USER_SYSTEM_INERTIA             (0.02889186144)  // determined in lab05c. Default 0.02
-//#define USER_SYSTEM_FRICTION            (0.04102557898)  // determined in lab05c. Default 0.01
-#define USER_SYSTEM_INERTIA             (0.02391791343688965)  // determined with lab12a
-#define USER_SYSTEM_FRICTION            (0.042265355587005615)  // determined with lab12a
-
-#elif (CURRENT_AMD_SETUP == AMD_SETUP_AVAGON_5000)
-
 #define USER_MOTOR_ENCODER_LINES		(5000.0)
 #define USER_SYSTEM_INERTIA             (0.12937843799591064)  // determined with lab12a
 #define USER_SYSTEM_FRICTION            (0.10034477710723877)  // determined with lab12a
 
-#else
-#error No AMD setup specified
-#endif
 
 
 #else
