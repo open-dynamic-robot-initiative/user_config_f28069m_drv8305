@@ -218,7 +218,8 @@ extern "C" {
 
 //! \brief Define each motor with a unique name and ID number
 // BLDC & SMPM motors
-#define TMotor_Antigravity_4004_300kv_2					113
+#define Example_Motor_2                   100
+#define TMotor_Antigravity_4004_300kv_2	  113
 
 
 //! \brief Uncomment the motor which should be included at compile
@@ -227,9 +228,27 @@ extern "C" {
 #define USER_MOTOR_2 TMotor_Antigravity_4004_300kv_2
 
 
-#if (USER_MOTOR_2 == TMotor_Antigravity_4004_300kv_2)
+#if (USER_MOTOR_2 == Example_Motor_2)
+
+#define USER_MOTOR_TYPE_2                 MOTOR_Type_Pm  // Pm = BLDC motor
+#define USER_MOTOR_NUM_POLE_PAIRS_2       (12)  // Number of pole pairs (given by datasheet)
+#define USER_MOTOR_Rr_2                   (0.0)  // always 0 for BLDC motors
+#define USER_MOTOR_Rs_2                   (NULL) // Determined during motor ID (lab02b)
+#define USER_MOTOR_Ls_d_2                 (NULL) // Determined during motor ID (lab02b)
+#define USER_MOTOR_Ls_q_2                 (NULL) // Determined during motor ID (lab02b)
+#define USER_MOTOR_RATED_FLUX_2           (NULL) // Determined during motor ID (lab02b)
+#define USER_MOTOR_MAGNETIZING_CURRENT_2  (NULL) // Determined during motor ID (lab02b)
+#define USER_MOTOR_RES_EST_CURRENT_2      (1.0)  // Current used during resistance estimation and motor alignment. Should be high enough that the motor starts moving.
+#define USER_MOTOR_IND_EST_CURRENT_2      (-1.0) // Just set this to -USER_MOTOR_RES_EST_CURRENT
+#define USER_MOTOR_MAX_CURRENT_2          (9.0)  // Max. current the motor can cope with (note: this is ignored when running the torque controller!)
+#define USER_MOTOR_FLUX_EST_FREQ_Hz_2     (120.0) // Given by excel spreadsheet. Default 20.
+#define USER_MOTOR_MAX_SPEED_KRPM_2       (6.0)  // Max. velocity of the motor (given by datasheet, if your lucky...)
+#define USER_MOTOR_ENCODER_LINES_2        (5000.0)  // Raw number of encoder lines (without quadrature)
+#define USER_SYSTEM_INERTIA_2             (NULL)  // Determined with lab12a
+#define USER_SYSTEM_FRICTION_2            (NULL)  // Determined with lab12a
 
 
+#elif (USER_MOTOR_2 == TMotor_Antigravity_4004_300kv_2)
 
 #define USER_MOTOR_TYPE_2                 MOTOR_Type_Pm
 #define USER_MOTOR_NUM_POLE_PAIRS_2       (12)
