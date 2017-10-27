@@ -53,7 +53,7 @@
 
 
 // select whether to use the inverter on connector J1 or J5 of the LaunchPad
-#define J5
+#define J1
 
 
 // platforms

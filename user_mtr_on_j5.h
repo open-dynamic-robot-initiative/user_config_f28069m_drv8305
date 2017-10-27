@@ -220,13 +220,13 @@ extern "C" {
 // BLDC & SMPM motors
 #define Example_Motor_2                   100
 #define TMotor_Antigravity_4004_300kv_2	  113
-
+#define TMotor_Antigravity_4006_380kv_2   114
 
 //! \brief Uncomment the motor which should be included at compile
 //! \brief These motor ID settings and motor parameters are then available to be used by the control system
 //! \brief Once your ideal settings and parameters are identified update the motor section here so it is available in the binary code
-#define USER_MOTOR_2 TMotor_Antigravity_4004_300kv_2
-
+// #define USER_MOTOR_2 TMotor_Antigravity_4004_300kv_2
+#define USER_MOTOR_2 TMotor_Antigravity_4006_380kv_2
 
 #if (USER_MOTOR_2 == Example_Motor_2)
 
@@ -267,6 +267,25 @@ extern "C" {
 #define USER_SYSTEM_INERTIA_2             (0.12937843799591064)  // determined with lab12a
 #define USER_SYSTEM_FRICTION_2            (0.10034477710723877)  // determined with lab12a
 
+#elif (USER_MOTOR == TMotor_Antigravity_4006_380kv_2)
+
+#define USER_MOTOR_TYPE_2                 MOTOR_Type_Pm
+#define USER_MOTOR_NUM_POLE_PAIRS_2       (12)
+#define USER_MOTOR_Rr_2                   (0.0)
+#define USER_MOTOR_Rs_2                   (0.09872509)
+#define USER_MOTOR_Ls_d_2                 (0.0000512) // A3 0.00005391928e-05
+#define USER_MOTOR_Ls_q_2                 (0.0000512)
+#define USER_MOTOR_RATED_FLUX_2           (0.007828592)
+#define USER_MOTOR_MAGNETIZING_CURRENT_2  (NULL)
+#define USER_MOTOR_RES_EST_CURRENT_2      (5.0)
+#define USER_MOTOR_IND_EST_CURRENT_2      (-1.0)
+#define USER_MOTOR_MAX_CURRENT_2          (9.0)
+#define USER_MOTOR_FLUX_EST_FREQ_Hz_2     (120.0) // Given by excel spreadsheet. Default 20.
+#define USER_MOTOR_MAX_SPEED_KRPM_2       (6.0)
+
+#define USER_MOTOR_ENCODER_LINES_2	      (2048.0)
+#define USER_SYSTEM_INERTIA_2             (0.2467952967)  // determined with lab12a
+#define USER_SYSTEM_FRICTION_2  		  (0.3493707776)  
 
 #else
 #error No motor type specified
