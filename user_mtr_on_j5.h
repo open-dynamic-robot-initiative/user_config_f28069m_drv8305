@@ -9,6 +9,7 @@
 #define _USER_J5_H_
 /* --COPYRIGHT--,BSD
  * Copyright (c) 2015, Texas Instruments Incorporated
+ * Copyright (c) 2019, Max Planck Gesellschaft, New York University
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,10 +40,11 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 
-//! \file   solutions/instaspin_foc/boards/boostxldrv8305_revA/f28x/f2806xF/src/user_j5.h
+//! \file
 //! \brief Contains the public interface for user initialization data for the CTRL, HAL, and EST modules 
 //!
 //! (C) Copyright 2015, Texas Instruments, Inc.
+//! (C) Copyright 2019, Max Planck Gesellschaft, New York University
 
 
 // **************************************************************************

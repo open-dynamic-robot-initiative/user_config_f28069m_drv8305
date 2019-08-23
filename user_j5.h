@@ -9,6 +9,7 @@
 #define _USER_J5_H_
 /* --COPYRIGHT--,BSD
  * Copyright (c) 2015, Texas Instruments Incorporated
+ * Copyright (c) 2019, Max Planck Gesellschaft, New York University
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,6 +44,7 @@
 //! \brief Contains the public interface for user initialization data for the CTRL, HAL, and EST modules 
 //!
 //! (C) Copyright 2015, Texas Instruments, Inc.
+//! (C) Copyright 2019, Max Planck Gesellschaft, New York University
 
 
 // **************************************************************************

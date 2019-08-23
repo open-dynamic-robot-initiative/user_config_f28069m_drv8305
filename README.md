@@ -23,7 +23,7 @@ configuration for J1 and J5 respectively.
 
 Dual motor applications use the files `user1.h`, `user2.h`, `user_mtr_on_j1.h`
 and `user_mtr_on_j5.h`.  The first two correspond to the `user.h` of the single
-motor case (I don't now why there are two files as most of the configuraiton is
+motor case (I don't now why there are two files as most of the configuration is
 redundant and probably only the values of `user1.h` are actually used...).  The
 last two contain the configurations for J1 and J5.
 
@@ -33,9 +33,17 @@ Note: In `user_mtr_on_j5.h` the names of all defines have to be suffixed with
 
 This design of the configuration files is very confusing and leads to lots of
 code duplication (motor parameters have to be copied to all four `*_j?.h`
-files).  TI is to be blamed for that but maybe, if someone has the time, we
-could change this to a better structure...
+files).  We should change this to a better structure...
 
 
 For more information on the configuration files, see the Confluence Wiki:
 https://atlas.is.localnet/confluence/display/AMDW/InstaSPIN+Configuration+Files
+
+
+License
+-------
+
+BSD 3-Clause License
+
+Copyright (c) 2015, Texas Instruments Incorporated
+Copyright (c) 2019, Max Planck Gesellschaft, New York University
