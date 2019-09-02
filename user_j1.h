@@ -253,8 +253,8 @@ extern "C" {
 //#define USER_MOTOR Belt_Drive_Washer_IPM
 //#define USER_MOTOR Marathon_5K33GN2A
 //#define USER_MOTOR Anaheim_Salient
-//#define USER_MOTOR TMotor_Antigravity_4004_300kv
-#define USER_MOTOR TMotor_Antigravity_MN7005_115kv
+#define USER_MOTOR TMotor_Antigravity_4004_300kv
+//#define USER_MOTOR TMotor_Antigravity_MN7005_115kv
 
 
 
