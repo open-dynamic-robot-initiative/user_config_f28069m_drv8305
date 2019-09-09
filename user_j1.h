@@ -258,155 +258,180 @@ extern "C" {
 
 
 
-#if (USER_MOTOR == Estun_EMJ_04APB22)                  // Name must match the motor #define
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm  // Motor_Type_Pm (All Synchronous: BLDC, PMSM, SMPM, IPM) or Motor_Type_Induction (Asynchronous ACI)
-#define USER_MOTOR_NUM_POLE_PAIRS       (4)            // PAIRS, not total poles. Used to calculate user RPM from rotor Hz only
-#define USER_MOTOR_Rr                   (NULL)         // Induction motors only, else NULL
-#define USER_MOTOR_Rs                   (2.303403)     // Identified phase to neutral resistance in a Y equivalent circuit (Ohms, float)
-#define USER_MOTOR_Ls_d                 (0.008464367)  // For PM, Identified average stator inductance  (Henry, float)
-#define USER_MOTOR_Ls_q                 (0.008464367)  // For PM, Identified average stator inductance  (Henry, float)
-#define USER_MOTOR_RATED_FLUX           (0.38)         // Identified TOTAL flux linkage between the rotor and the stator (V/Hz)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)         // Induction motors only, else NULL
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)          // During Motor ID, maximum current (Amperes, float) used for Rs estimation, 10-20% rated current
-#define USER_MOTOR_IND_EST_CURRENT      (-1.0)         // During Motor ID, maximum current (negative Amperes, float) used for Ls estimation, use just enough to enable rotation
-#define USER_MOTOR_MAX_CURRENT          (3.82)         // CRITICAL: Used during ID and run-time, sets a limit on the maximum current command output of the provided Speed PI Controller to the Iq controller
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)         // During Motor ID, maximum commanded speed (Hz, float), ~10% rated
-#define USER_MOTOR_ENCODER_LINES        (2500.0)       // Number of lines on the motor's quadrature encoder
-#define USER_MOTOR_MAX_SPEED_KRPM       (3.0)          // Maximum speed that the motor
-#define USER_SYSTEM_INERTIA             (0.02)         // Inertia of the motor & system, should be estimated by SpinTAC Velocity Identify
-#define USER_SYSTEM_FRICTION            (0.01)         // Friction of the motor & system, should be estimated by SpinTAC Velocity Identify
+//#if (USER_MOTOR == Estun_EMJ_04APB22)                  // Name must match the motor #define
+//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm  // Motor_Type_Pm (All Synchronous: BLDC, PMSM, SMPM, IPM) or Motor_Type_Induction (Asynchronous ACI)
+//#define USER_MOTOR_NUM_POLE_PAIRS       (4)            // PAIRS, not total poles. Used to calculate user RPM from rotor Hz only
+//#define USER_MOTOR_Rr                   (NULL)         // Induction motors only, else NULL
+//#define USER_MOTOR_Rs                   (2.303403)     // Identified phase to neutral resistance in a Y equivalent circuit (Ohms, float)
+//#define USER_MOTOR_Ls_d                 (0.008464367)  // For PM, Identified average stator inductance  (Henry, float)
+//#define USER_MOTOR_Ls_q                 (0.008464367)  // For PM, Identified average stator inductance  (Henry, float)
+//#define USER_MOTOR_RATED_FLUX           (0.38)         // Identified TOTAL flux linkage between the rotor and the stator (V/Hz)
+//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)         // Induction motors only, else NULL
+//#define USER_MOTOR_RES_EST_CURRENT      (1.0)          // During Motor ID, maximum current (Amperes, float) used for Rs estimation, 10-20% rated current
+//#define USER_MOTOR_IND_EST_CURRENT      (-1.0)         // During Motor ID, maximum current (negative Amperes, float) used for Ls estimation, use just enough to enable rotation
+//#define USER_MOTOR_MAX_CURRENT          (3.82)         // CRITICAL: Used during ID and run-time, sets a limit on the maximum current command output of the provided Speed PI Controller to the Iq controller
+//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)         // During Motor ID, maximum commanded speed (Hz, float), ~10% rated
+//#define USER_MOTOR_ENCODER_LINES        (2500.0)       // Number of lines on the motor's quadrature encoder
+//#define USER_MOTOR_MAX_SPEED_KRPM       (3.0)          // Maximum speed that the motor
+//#define USER_SYSTEM_INERTIA             (0.02)         // Inertia of the motor & system, should be estimated by SpinTAC Velocity Identify
+//#define USER_SYSTEM_FRICTION            (0.01)         // Friction of the motor & system, should be estimated by SpinTAC Velocity Identify
+//
+//#elif (USER_MOTOR == Anaheim_BLY172S)
+//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
+//#define USER_MOTOR_NUM_POLE_PAIRS       (4)
+//#define USER_MOTOR_Rr                   (NULL)
+//#define USER_MOTOR_Rs                   (0.4110007)
+//#define USER_MOTOR_Ls_d                 (0.0007092811)
+//#define USER_MOTOR_Ls_q                 (0.0007092811)
+//#define USER_MOTOR_RATED_FLUX           (0.03279636)
+//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
+//#define USER_MOTOR_RES_EST_CURRENT      (1.0)
+//#define USER_MOTOR_IND_EST_CURRENT      (-1.0)
+//#define USER_MOTOR_MAX_CURRENT          (5.0)
+//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)
+//#define USER_MOTOR_ENCODER_LINES        (2000.0)
+//#define USER_MOTOR_MAX_SPEED_KRPM       (4.0)
+//#define USER_SYSTEM_INERTIA             (0.02)
+//#define USER_SYSTEM_FRICTION            (0.01)
+//
+//#elif (USER_MOTOR == Teknic_M2310PLN04K)
+//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
+//#define USER_MOTOR_NUM_POLE_PAIRS       (4)
+//#define USER_MOTOR_Rr                   (NULL)
+//#define USER_MOTOR_Rs                   (0.3918252)
+//#define USER_MOTOR_Ls_d                 (0.00023495)
+//#define USER_MOTOR_Ls_q                 (0.00023495)
+//#define USER_MOTOR_RATED_FLUX           (0.03955824)
+//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
+//#define USER_MOTOR_RES_EST_CURRENT      (1.0)
+//#define USER_MOTOR_IND_EST_CURRENT      (-0.5)
+//#define USER_MOTOR_MAX_CURRENT          (7.0)
+//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)
+//#define USER_MOTOR_ENCODER_LINES        (1000.0)
+//#define USER_MOTOR_MAX_SPEED_KRPM       (4.0)
+//#define USER_SYSTEM_INERTIA             (0.02)
+//#define USER_SYSTEM_FRICTION            (0.01)
+//
+//#elif (USER_MOTOR == Belt_Drive_Washer_IPM)
+//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
+//#define USER_MOTOR_NUM_POLE_PAIRS       (4)
+//#define USER_MOTOR_Rr                   (NULL)
+//#define USER_MOTOR_Rs                   (2.832002)
+//#define USER_MOTOR_Ls_d                 (0.0115)
+//#define USER_MOTOR_Ls_q                 (0.0135)
+//#define USER_MOTOR_RATED_FLUX           (0.5022156)
+//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
+//#define USER_MOTOR_RES_EST_CURRENT      (1.0)
+//#define USER_MOTOR_IND_EST_CURRENT      (-1.0)
+//#define USER_MOTOR_MAX_CURRENT          (4.0)
+//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)
+//
+//#elif (USER_MOTOR == Marathon_5K33GN2A)                      // Name must match the motor #define
+//#define USER_MOTOR_TYPE                 MOTOR_Type_Induction // Motor_Type_Pm (All Synchronous: BLDC, PMSM, SMPM, IPM) or Motor_Type_Induction (Asynchronous ACI)
+//#define USER_MOTOR_NUM_POLE_PAIRS       (2)                  // PAIRS, not total poles. Used to calculate user RPM from rotor Hz only
+//#define USER_MOTOR_Rr                   (5.508003)           // Identified phase to neutral in a Y equivalent circuit (Ohms, float)
+//#define USER_MOTOR_Rs                   (10.71121)           // Identified phase to neutral in a Y equivalent circuit (Ohms, float)
+//#define USER_MOTOR_Ls_d                 (0.05296588)         // For Induction, Identified average stator inductance  (Henry, float)
+//#define USER_MOTOR_Ls_q                 (0.05296588)         // For Induction, Identified average stator inductance  (Henry, float)
+//#define USER_MOTOR_RATED_FLUX           (0.8165*220.0/60.0)  // sqrt(2/3)* Rated V (line-line) / Rated Freq (Hz)
+//#define USER_MOTOR_MAGNETIZING_CURRENT  (1.378)              // Identified magnetizing current for induction motors, else NULL
+//#define USER_MOTOR_RES_EST_CURRENT      (0.5)                // During Motor ID, maximum current (Amperes, float) used for Rs estimation, 10-20% rated current
+//#define USER_MOTOR_IND_EST_CURRENT      (NULL)               // not used for induction
+//#define USER_MOTOR_MAX_CURRENT          (2.0)                // CRITICAL: Used during ID and run-time, sets a limit on the maximum current command output of the provided Speed PI Controller to the Iq controller
+//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)                // During Motor ID, maximum commanded speed (Hz, float). Should always use 5 Hz for Induction.
+//#define USER_MOTOR_ENCODER_LINES        (2048.0)             // Number of lines on the motor's quadrature encoder
+//#define USER_MOTOR_MAX_SPEED_KRPM       (1.725)              // Maximum speed that the motor
+//#define USER_SYSTEM_INERTIA             (0.02)               // Inertia of the motor & system, should be estimated by SpinTAC Velocity Identify
+//#define USER_SYSTEM_FRICTION            (0.01)               // Friction of the motor & system, should be estimated by SpinTAC Velocity Identify
+//
+//#elif (USER_MOTOR == TMotor_Antigravity_4004_300kv)
+//
+//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
+//#define USER_MOTOR_NUM_POLE_PAIRS       (12)
+//#define USER_MOTOR_Rr                   (0.0)
+//#define USER_MOTOR_Rs                   (0.2324751)
+//#define USER_MOTOR_Ls_d                 (0.00014) // A3
+//#define USER_MOTOR_Ls_q                 (0.00014)
+//#define USER_MOTOR_RATED_FLUX           (0.009390805)
+//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
+//#define USER_MOTOR_RES_EST_CURRENT      (3.0)
+//#define USER_MOTOR_IND_EST_CURRENT      (-3.0)
+//#define USER_MOTOR_MAX_CURRENT          (9.0)
+//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
+//#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
+//
+//#define USER_MOTOR_ENCODER_LINES		(5000.0)
+//#define USER_SYSTEM_INERTIA             (0.12937843799591064)  // determined with lab12a
+//#define USER_SYSTEM_FRICTION            (0.10034477710723877)  // determined with lab12a
+//
+//#elif (USER_MOTOR == TMotor_Antigravity_4004_300kv)
+//
+//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
+//#define USER_MOTOR_NUM_POLE_PAIRS       (12)
+//#define USER_MOTOR_Rr                   (0.0)
+//#define USER_MOTOR_Rs                   (0.2324751)
+//#define USER_MOTOR_Ls_d                 (0.00014) // A3
+//#define USER_MOTOR_Ls_q                 (0.00014)
+//#define USER_MOTOR_RATED_FLUX           (0.009390805)
+//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
+//#define USER_MOTOR_RES_EST_CURRENT      (3.0)
+//#define USER_MOTOR_IND_EST_CURRENT      (-3.0)
+//#define USER_MOTOR_MAX_CURRENT          (9.0)
+//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
+//#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
+//
+//#define USER_MOTOR_ENCODER_LINES        (5000.0)
+//#define USER_SYSTEM_INERTIA             (0.12937843799591064)  // determined with lab12a
+//#define USER_SYSTEM_FRICTION            (0.10034477710723877)  // determined with lab12a 
+//
+//#elif (USER_MOTOR == TMotor_Antigravity_MN7005_115kv)
+//
+//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
+//#define USER_MOTOR_NUM_POLE_PAIRS       (14)
+//#define USER_MOTOR_Rr                   (NULL)
+//#define USER_MOTOR_Rs                   (0.159925)
+//#define USER_MOTOR_Ls_d                 (0.00005119999) // A3 0.00005391928e-05
+//#define USER_MOTOR_Ls_q                 (0.00005119999)
+//#define USER_MOTOR_RATED_FLUX           (0.01285466)
+//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
+//#define USER_MOTOR_RES_EST_CURRENT      (4.0)
+//#define USER_MOTOR_IND_EST_CURRENT      (-4.0)
+//#define USER_MOTOR_MAX_CURRENT          (15.0)
+//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
+//#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
+//
+//#define USER_MOTOR_ENCODER_LINES		(5000.0)
+//#define USER_SYSTEM_INERTIA             (0.1023780107)  // determined with lab12a
+//#define USER_SYSTEM_FRICTION            (0.2193766236)  // determined with lab12a  // determined with lab12a
+//
+//#else
+//#error No motor type specified
+//#endif
 
-#elif (USER_MOTOR == Anaheim_BLY172S)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-#define USER_MOTOR_NUM_POLE_PAIRS       (4)
-#define USER_MOTOR_Rr                   (NULL)
-#define USER_MOTOR_Rs                   (0.4110007)
-#define USER_MOTOR_Ls_d                 (0.0007092811)
-#define USER_MOTOR_Ls_q                 (0.0007092811)
-#define USER_MOTOR_RATED_FLUX           (0.03279636)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (-1.0)
-#define USER_MOTOR_MAX_CURRENT          (5.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)
-#define USER_MOTOR_ENCODER_LINES        (2000.0)
-#define USER_MOTOR_MAX_SPEED_KRPM       (4.0)
-#define USER_SYSTEM_INERTIA             (0.02)
-#define USER_SYSTEM_FRICTION            (0.01)
 
-#elif (USER_MOTOR == Teknic_M2310PLN04K)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-#define USER_MOTOR_NUM_POLE_PAIRS       (4)
-#define USER_MOTOR_Rr                   (NULL)
-#define USER_MOTOR_Rs                   (0.3918252)
-#define USER_MOTOR_Ls_d                 (0.00023495)
-#define USER_MOTOR_Ls_q                 (0.00023495)
-#define USER_MOTOR_RATED_FLUX           (0.03955824)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (-0.5)
-#define USER_MOTOR_MAX_CURRENT          (7.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)
-#define USER_MOTOR_ENCODER_LINES        (1000.0)
-#define USER_MOTOR_MAX_SPEED_KRPM       (4.0)
-#define USER_SYSTEM_INERTIA             (0.02)
-#define USER_SYSTEM_FRICTION            (0.01)
 
-#elif (USER_MOTOR == Belt_Drive_Washer_IPM)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-#define USER_MOTOR_NUM_POLE_PAIRS       (4)
-#define USER_MOTOR_Rr                   (NULL)
-#define USER_MOTOR_Rs                   (2.832002)
-#define USER_MOTOR_Ls_d                 (0.0115)
-#define USER_MOTOR_Ls_q                 (0.0135)
-#define USER_MOTOR_RATED_FLUX           (0.5022156)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (-1.0)
-#define USER_MOTOR_MAX_CURRENT          (4.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)
+#define USER_MotorData MOTORCONFIG_TMotor_Antigravity_MN7005_115kv
 
-#elif (USER_MOTOR == Marathon_5K33GN2A)                      // Name must match the motor #define
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction // Motor_Type_Pm (All Synchronous: BLDC, PMSM, SMPM, IPM) or Motor_Type_Induction (Asynchronous ACI)
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)                  // PAIRS, not total poles. Used to calculate user RPM from rotor Hz only
-#define USER_MOTOR_Rr                   (5.508003)           // Identified phase to neutral in a Y equivalent circuit (Ohms, float)
-#define USER_MOTOR_Rs                   (10.71121)           // Identified phase to neutral in a Y equivalent circuit (Ohms, float)
-#define USER_MOTOR_Ls_d                 (0.05296588)         // For Induction, Identified average stator inductance  (Henry, float)
-#define USER_MOTOR_Ls_q                 (0.05296588)         // For Induction, Identified average stator inductance  (Henry, float)
-#define USER_MOTOR_RATED_FLUX           (0.8165*220.0/60.0)  // sqrt(2/3)* Rated V (line-line) / Rated Freq (Hz)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (1.378)              // Identified magnetizing current for induction motors, else NULL
-#define USER_MOTOR_RES_EST_CURRENT      (0.5)                // During Motor ID, maximum current (Amperes, float) used for Rs estimation, 10-20% rated current
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)               // not used for induction
-#define USER_MOTOR_MAX_CURRENT          (2.0)                // CRITICAL: Used during ID and run-time, sets a limit on the maximum current command output of the provided Speed PI Controller to the Iq controller
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)                // During Motor ID, maximum commanded speed (Hz, float). Should always use 5 Hz for Induction.
-#define USER_MOTOR_ENCODER_LINES        (2048.0)             // Number of lines on the motor's quadrature encoder
-#define USER_MOTOR_MAX_SPEED_KRPM       (1.725)              // Maximum speed that the motor
-#define USER_SYSTEM_INERTIA             (0.02)               // Inertia of the motor & system, should be estimated by SpinTAC Velocity Identify
-#define USER_SYSTEM_FRICTION            (0.01)               // Friction of the motor & system, should be estimated by SpinTAC Velocity Identify
 
-#elif (USER_MOTOR == TMotor_Antigravity_4004_300kv)
+#define USER_MOTOR_TYPE (USER_MotorData.type)
+#define USER_MOTOR_NUM_POLE_PAIRS (USER_MotorData.numPolePairs)
+#define USER_MOTOR_Rr (USER_MotorData.Rr_Ohm)
+#define USER_MOTOR_Rs (USER_MotorData.Rs_Ohm)
+#define USER_MOTOR_Ls_d (USER_MotorData.Ls_d_H)
+#define USER_MOTOR_Ls_q (USER_MotorData.Ls_q_H)
+#define USER_MOTOR_RATED_FLUX (USER_MotorData.ratedFlux_VpHz)
+#define USER_MOTOR_MAGNETIZING_CURRENT (USER_MotorData.magnetizingCurrent)
+#define USER_MOTOR_RES_EST_CURRENT (USER_MotorData.resEstCurrent_A)
+#define USER_MOTOR_IND_EST_CURRENT (USER_MotorData.indEstCurrent_A)
+#define USER_MOTOR_MAX_CURRENT (USER_MotorData.maxCurrent_A)
+#define USER_MOTOR_FLUX_EST_FREQ_Hz (USER_MotorData.fluxEstFreq_Hz)
+#define USER_MOTOR_MAX_SPEED_KRPM (USER_MotorData.maxSpeed_krpm)
+#define USER_MOTOR_ENCODER_LINES (USER_MotorData.encoderLines)
+#define USER_SYSTEM_INERTIA (USER_MotorData.inertia)
+#define USER_SYSTEM_FRICTION (USER_MotorData.friction)
 
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-#define USER_MOTOR_NUM_POLE_PAIRS       (12)
-#define USER_MOTOR_Rr                   (0.0)
-#define USER_MOTOR_Rs                   (0.2324751)
-#define USER_MOTOR_Ls_d                 (0.00014) // A3
-#define USER_MOTOR_Ls_q                 (0.00014)
-#define USER_MOTOR_RATED_FLUX           (0.009390805)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-#define USER_MOTOR_RES_EST_CURRENT      (3.0)
-#define USER_MOTOR_IND_EST_CURRENT      (-3.0)
-#define USER_MOTOR_MAX_CURRENT          (9.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
-#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
 
-#define USER_MOTOR_ENCODER_LINES		(5000.0)
-#define USER_SYSTEM_INERTIA             (0.12937843799591064)  // determined with lab12a
-#define USER_SYSTEM_FRICTION            (0.10034477710723877)  // determined with lab12a
 
-#elif (USER_MOTOR == TMotor_Antigravity_4004_300kv)
-
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-#define USER_MOTOR_NUM_POLE_PAIRS       (12)
-#define USER_MOTOR_Rr                   (0.0)
-#define USER_MOTOR_Rs                   (0.2324751)
-#define USER_MOTOR_Ls_d                 (0.00014) // A3
-#define USER_MOTOR_Ls_q                 (0.00014)
-#define USER_MOTOR_RATED_FLUX           (0.009390805)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-#define USER_MOTOR_RES_EST_CURRENT      (3.0)
-#define USER_MOTOR_IND_EST_CURRENT      (-3.0)
-#define USER_MOTOR_MAX_CURRENT          (9.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
-#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
-
-#define USER_MOTOR_ENCODER_LINES        (5000.0)
-#define USER_SYSTEM_INERTIA             (0.12937843799591064)  // determined with lab12a
-#define USER_SYSTEM_FRICTION            (0.10034477710723877)  // determined with lab12a 
-
-#elif (USER_MOTOR == TMotor_Antigravity_MN7005_115kv)
-
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-#define USER_MOTOR_NUM_POLE_PAIRS       (14)
-#define USER_MOTOR_Rr                   (NULL)
-#define USER_MOTOR_Rs                   (0.159925)
-#define USER_MOTOR_Ls_d                 (0.00005119999) // A3 0.00005391928e-05
-#define USER_MOTOR_Ls_q                 (0.00005119999)
-#define USER_MOTOR_RATED_FLUX           (0.01285466)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-#define USER_MOTOR_RES_EST_CURRENT      (4.0)
-#define USER_MOTOR_IND_EST_CURRENT      (-4.0)
-#define USER_MOTOR_MAX_CURRENT          (15.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
-#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
-
-#define USER_MOTOR_ENCODER_LINES		(5000.0)
-#define USER_SYSTEM_INERTIA             (0.1023780107)  // determined with lab12a
-#define USER_SYSTEM_FRICTION            (0.2193766236)  // determined with lab12a  // determined with lab12a
-
-#else
-#error No motor type specified
-#endif
 
 #ifdef __cplusplus
 }
