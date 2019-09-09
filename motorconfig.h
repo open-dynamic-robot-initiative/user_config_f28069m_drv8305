@@ -9,13 +9,20 @@ extern "C" {
 
 typedef struct
 {
-    MOTOR_Type_e    type;               //!< Defines the motor type
-    uint_least16_t  numPolePairs;       //!< Defines the number of pole pairs
-    float_t         Ls_d_H;             //!< Defines the direct stator inductance, H
-    float_t         Ls_q_H;             //!< Defines the quadrature stator inductance, H
-    float_t         Rr_Ohm;             //!< Defines the rotor resistance, Ohm
-    float_t         Rs_Ohm;             //!< Defines the stator resistance, Ohm
-    float_t         ratedFlux_VpHz;     //!< Defines the rated flux, V/Hz
+    //! Motor type
+    MOTOR_Type_e type;
+    //! Number of pole pairs
+    uint_least16_t numPolePairs;
+    //! Direct stator inductance, H
+    float_t Ls_d_H;
+    //! Quadrature stator inductance, H
+    float_t Ls_q_H;
+    //! Rotor resistance, Ohm
+    float_t Rr_Ohm;
+    //! Stator resistance, Ohm
+    float_t Rs_Ohm;
+    //! Rated flux, V/Hz
+    float_t ratedFlux_VpHz;
     float_t magnetizingCurrent;
     float_t resEstCurrent_A;
     float_t indEstCurrent_A;
@@ -53,7 +60,7 @@ static const MOTORCONFIG_MotorData_t MOTORCONFIG_TMotor_Antigravity_4004_300kv =
 static const MOTORCONFIG_MotorData_t MOTORCONFIG_TMotor_Antigravity_4006_380kv = {
     .type = MOTOR_Type_Pm,
     .numPolePairs = 12,
-    .Rr_Ohm = 0.0,
+    .Rr_Ohm = 0,
     .Rs_Ohm = 0.09872509,
     .Ls_d_H = 0.0000512, // A3 0.00005391928e-05
     .Ls_q_H = 0.0000512,
@@ -64,10 +71,9 @@ static const MOTORCONFIG_MotorData_t MOTORCONFIG_TMotor_Antigravity_4006_380kv =
     .maxCurrent_A = 9.0,
     .fluxEstFreq_Hz = 120.0, // Given by excel spreadsheet. Default 20.
     .maxSpeed_krpm = 6.0,
-
     .encoderLines = 2048.0,
     .inertia = 0.2467952967,  // determined with lab12a
-    .friction = 0.3493707776,  // determined with lab12a  // determined with lab12a
+    .friction = 0.3493707776,  // determined with lab12a
 };
 
 
@@ -85,7 +91,6 @@ static const MOTORCONFIG_MotorData_t MOTORCONFIG_TMotor_Antigravity_MN7005_115kv
     .maxCurrent_A = 15.0,
     .fluxEstFreq_Hz = 120.0,  // Given by excel spreadsheet. Default 20.
     .maxSpeed_krpm = 6.0,
-
     .encoderLines = 5000,
     .inertia = 0.1023780107,  // determined with lab12a
     .friction = 0.2193766236,  // determined with lab12a

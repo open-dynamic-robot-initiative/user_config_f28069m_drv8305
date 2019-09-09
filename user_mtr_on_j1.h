@@ -50,13 +50,13 @@
 // **************************************************************************
 // the includes
 
+#include "motorconfig.h"
+
 //!
 //!
 //! \defgroup USER USER
 //!
 //@{
-
-#include "motors.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -221,19 +221,10 @@ extern "C" {
 //! \brief multiply it by 20 to convert into Bandwidth
 #define USER_SYSTEM_BANDWIDTH      (100.0)
 
-//! \brief Define each motor with a unique name and ID number
-// BLDC & SMPM motors
-#define Example_Motor                   100
-#define TMotor_Antigravity_4004_300kv	113
-#define TMotor_Antigravity_4006_380kv   114
-#define TMotor_Antigravity_MN7005_115kv 115
-//! \brief Uncomment the motor which should be included at compile
-//! \brief These motor ID settings and motor parameters are then available to be used by the control system
-//! \brief Once your ideal settings and parameters are identified update the motor section here so it is available in the binary code
-#define USER_MOTOR TMotor_Antigravity_MN7005_115kv
 
-
-
+//! \brief Defines the motor configuration to be used.
+//!
+//! Set this to one of the motor config structs defined in motorconfig.h.
 #define USER_MotorData MOTORCONFIG_TMotor_Antigravity_MN7005_115kv
 
 
@@ -254,91 +245,6 @@ extern "C" {
 #define USER_SYSTEM_INERTIA (USER_MotorData.inertia)
 #define USER_SYSTEM_FRICTION (USER_MotorData.friction)
 
-
-
-
-//#if (USER_MOTOR == Example_Motor)
-//
-//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm  // Pm = BLDC motor
-//#define USER_MOTOR_NUM_POLE_PAIRS       (12)  // Number of pole pairs (given by datasheet)
-//#define USER_MOTOR_Rr                   (0.0)  // always 0 for BLDC motors
-//#define USER_MOTOR_Rs                   (NULL) // Determined during motor ID (lab02b)
-//#define USER_MOTOR_Ls_d                 (NULL) // Determined during motor ID (lab02b)
-//#define USER_MOTOR_Ls_q                 (NULL) // Determined during motor ID (lab02b)
-//#define USER_MOTOR_RATED_FLUX           (NULL) // Determined during motor ID (lab02b)
-//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL) // Determined during motor ID (lab02b)
-//#define USER_MOTOR_RES_EST_CURRENT      (1.0)  // Current used during resistance estimation and motor alignment. Should be high enough that the motor starts moving.
-//#define USER_MOTOR_IND_EST_CURRENT      (-1.0) // Just set this to -USER_MOTOR_RES_EST_CURRENT
-//#define USER_MOTOR_MAX_CURRENT          (9.0)  // Max. current the motor can cope with (note: this is ignored when running the torque controller!)
-//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
-//#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)  // Max. velocity of the motor (given by datasheet, if your lucky...)
-//#define USER_MOTOR_ENCODER_LINES		(5000.0)  // Raw number of encoder lines (without quadrature)
-//#define USER_SYSTEM_INERTIA             (NULL)  // Determined with lab12a
-//#define USER_SYSTEM_FRICTION            (NULL)  // Determined with lab12a
-//
-//
-//#elif (USER_MOTOR == TMotor_Antigravity_4004_300kv)
-//
-//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-//#define USER_MOTOR_NUM_POLE_PAIRS       (12)
-//#define USER_MOTOR_Rr                   (0.0)
-//#define USER_MOTOR_Rs                   (0.2324751)
-//#define USER_MOTOR_Ls_d                 (0.00014) // A3
-//#define USER_MOTOR_Ls_q                 (0.00014)
-//#define USER_MOTOR_RATED_FLUX           (0.009390805)
-//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-//#define USER_MOTOR_RES_EST_CURRENT      (3.0)
-//#define USER_MOTOR_IND_EST_CURRENT      (-1.0)
-//#define USER_MOTOR_MAX_CURRENT          (9.0)
-//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
-//#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
-//#define USER_MOTOR_ENCODER_LINES		(5000.0)
-//#define USER_SYSTEM_INERTIA             (0.12937843799591064)  // determined with lab12a
-//#define USER_SYSTEM_FRICTION            (0.10034477710723877)  // determined with lab12a
-//
-//#elif (USER_MOTOR == TMotor_Antigravity_4006_380kv)
-//
-//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-//#define USER_MOTOR_NUM_POLE_PAIRS       (12)
-//#define USER_MOTOR_Rr                   (0.0)
-//#define USER_MOTOR_Rs                   (0.09872509)
-//#define USER_MOTOR_Ls_d                 (0.0000512) // A3 0.00005391928e-05
-//#define USER_MOTOR_Ls_q                 (0.0000512)
-//#define USER_MOTOR_RATED_FLUX           (0.007828592)
-//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-//#define USER_MOTOR_RES_EST_CURRENT      (5.0)
-//#define USER_MOTOR_IND_EST_CURRENT      (-1.0)
-//#define USER_MOTOR_MAX_CURRENT          (9.0)
-//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
-//#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
-//
-//#define USER_MOTOR_ENCODER_LINES		(2048.0)
-//#define USER_SYSTEM_INERTIA             (0.2467952967)  // determined with lab12a
-//#define USER_SYSTEM_FRICTION            (0.3493707776)  // determined with lab12a  // determined with lab12a
-//
-//#elif (USER_MOTOR == TMotor_Antigravity_MN7005_115kv)
-//
-//#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-//#define USER_MOTOR_NUM_POLE_PAIRS       (14)
-//#define USER_MOTOR_Rr                   (NULL)
-//#define USER_MOTOR_Rs                   (0.159925)
-//#define USER_MOTOR_Ls_d                 (0.00005119999) // A3 0.00005391928e-05
-//#define USER_MOTOR_Ls_q                 (0.00005119999)
-//#define USER_MOTOR_RATED_FLUX           (0.01285466)
-//#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-//#define USER_MOTOR_RES_EST_CURRENT      (4.0)
-//#define USER_MOTOR_IND_EST_CURRENT      (-4.0)
-//#define USER_MOTOR_MAX_CURRENT          (15.0)
-//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (120.0) // Given by excel spreadsheet. Default 20.
-//#define USER_MOTOR_MAX_SPEED_KRPM       (6.0)
-//
-//#define USER_MOTOR_ENCODER_LINES        (5000.0)
-//#define USER_SYSTEM_INERTIA             (0.1023780107)  // determined with lab12a
-//#define USER_SYSTEM_FRICTION            (0.2193766236)  // determined with lab12a  // determined with lab12a
-//
-//#else
-//#error No motor type specified
-//#endif
 
 #ifdef __cplusplus
 }
