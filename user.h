@@ -223,7 +223,7 @@ extern "C" {
 // **************************************************************************
 // this section defined in user_j1.h or user_j5.h
 
-#ifndef USER_MOTOR
+#ifndef USER_MotorData
 #error Motor is not defined in user.h
 #endif
 
