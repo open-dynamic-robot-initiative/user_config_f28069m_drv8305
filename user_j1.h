@@ -33,15 +33,7 @@
  * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
  * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
- * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * --/COPYRIGHT--*/
-
-//! \file
-//! \brief Contains the public interface for user initialization data for the CTRL, HAL, and EST modules 
+ * PROCUREMENT OF SUBSTITTMotor_Antigravity_4004_300kvpublic interface for user initialization data for the CTRL, HAL, and EST modules
 //!
 //! (C) Copyright 2015, Texas Instruments, Inc.
 //! (C) Copyright 2019, Max Planck Gesellschaft, New York University
@@ -253,8 +245,8 @@ extern "C" {
 //#define USER_MOTOR Belt_Drive_Washer_IPM
 //#define USER_MOTOR Marathon_5K33GN2A
 //#define USER_MOTOR Anaheim_Salient
-//#define USER_MOTOR TMotor_Antigravity_4004_300kv
-#define USER_MOTOR TMotor_Antigravity_MN7005_115kv
+#define USER_MOTOR TMotor_Antigravity_4004_300kv
+//#define USER_MOTOR TMotor_Antigravity_MN7005_115kv
 
 
 
