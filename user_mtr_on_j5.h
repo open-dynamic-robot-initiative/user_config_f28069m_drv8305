@@ -229,7 +229,8 @@ extern "C" {
 //! \brief These motor ID settings and motor parameters are then available to be used by the control system
 //! \brief Once your ideal settings and parameters are identified update the motor section here so it is available in the binary code
 // #define USER_MOTOR_2 TMotor_Antigravity_4004_300kv_2
-#define USER_MOTOR_2 TMotor_Antigravity_MN7005_115kv_2
+// #define USER_MOTOR_2 TMotor_Antigravity_MN7005_115kv_2
+#define USER_MOTOR_2 TMotor_Antigravity_4004_300kv_2
 
 #if (USER_MOTOR_2 == Example_Motor_2)
 
