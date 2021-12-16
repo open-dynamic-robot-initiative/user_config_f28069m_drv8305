@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Motor Paramter Identification &#8212; ODRI Motor Board Configuration 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to ODRI Motor Board Configuration’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="motor-paramter-identification">
+<h1>Motor Paramter Identification<a class="headerlink" href="#motor-paramter-identification" title="Permalink to this headline">¶</a></h1>
+<p>When getting a new motor, inverter board or encoder, some parameters have to be
+specified to allow good control. The InstaSPIN package contains procedures to
+automatically determine these parameters.</p>
+<p>The programs for identifying parameters of new hardware are part of the example
+projects of MotorWare. There are two labs we need, <strong>lab02b</strong> and <strong>lab12a</strong>.
+For more, refer to the “InstaSPIN Projects and Labs User’s Guide” (in MotorWare:
+Resources &gt; Training: User’s Guides, Labs, Tutorials) for more information.</p>
+<p><strong>Note:</strong> With the current version (MotorWare 1.01.00.16) the User’s Guide
+always speaks of writing parameters to user.h. In fact, most parameters are
+actually stored in the files user_j1.h/user_j5.h (depending on which slot of
+the LaunchPad you are using). For running the dual_motor_torque_ctrl firmware
+you’ll need to copy everything to user_mtr_on_j1.h / user_mtr_on_j15.h as
+well.</p>
+<section id="lab-02b-id-motor-resistance-and-inductance">
+<h2>Lab 02b: ID motor resistance and inductance<a class="headerlink" href="#lab-02b-id-motor-resistance-and-inductance" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this lab, the motor will</p>
+<ol class="arabic simple">
+<li><p>hum at high-frequency for several seconds without spinning</p></li>
+<li><p>spin for about a minute at different speeds, slowly ramping up and then
+down</p></li>
+</ol>
+</div>
+<p>To run the project, follow these steps (assuming, you are using our patched MotorWare
+version have set up the workspace as described in
+<a class="reference external" href="https://open-dynamic-robot-initiative.github.io/mw_dual_motor_torque_ctrl/build_instructions.html" title="(in ODRI Firmware for CAN v1.0.0)"><span>How to Build and Flash the Firmware</span></a>).</p>
+<ol class="arabic">
+<li><p>Connect the motor to the board, make sure it can spin freely.</p></li>
+<li><p>If not already done, import <em>proj_lab02b</em> into your CCS workspace:</p>
+<ol class="loweralpha simple">
+<li><p>Go to Projects &gt; Import CCS Projects…</p></li>
+<li><p>Browse for search-directory and go to <code class="docutils literal notranslate"><span class="pre">your_workspace/motorware/sw/solutions/instaspin_foc/boards/boostxldrv8305_revA/f28x/f2806xF/projects/ccs5/proj_lab02b</span></code>.
+proj_lab02b should now appear in the “Discovered projects” box. Make sure
+it is checked.</p></li>
+<li><p>Do <strong>not</strong> check “Copy projects into workspace”!</p></li>
+<li><p>Press “Finish”</p></li>
+</ol>
+</li>
+<li><p>Select the correct BoosterPack slot (J1 or J5) in user.h:</p>
+<ol class="loweralpha">
+<li><p>The file is found in <code class="docutils literal notranslate"><span class="pre">Includes</span> <span class="pre">&gt;</span> <span class="pre">user_config_f28069m_drv8305</span></code></p>
+<img alt="_images/css_open_user-h_lab2b.png" src="_images/css_open_user-h_lab2b.png" />
+</li>
+<li><p>Right in the beginning (after the includes), there is a line</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#define J1  </span><span class="c1">// or J5</span>
+</pre></div>
+</div>
+<p>Make sure the correct value is set (“J1” if the motor is connected to the
+upper BoosterPack, “J5” if it is connected to the lower one)</p>
+</li>
+</ol>
+</li>
+<li><p>Open either <code class="docutils literal notranslate"><span class="pre">user_j1.h</span></code> or <code class="docutils literal notranslate"><span class="pre">user_j5.h</span></code>, depending on what you set in the
+previous step and follow the instructions below (taken from the InstaSPIN
+Projects and Labs User’s Guide):</p>
+<ol class="loweralpha">
+<li><p>Halfway through the <code class="docutils literal notranslate"><span class="pre">user_*.h</span></code> file, there is a definition of motor
+parameters. The section of the code starts with the name “USER MOTOR &amp; ID
+SETTINGS”</p></li>
+<li><p>To define a new motor, add a line with a unique number:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#define MY_MOTOR 123</span>
+</pre></div>
+</div>
+</li>
+<li><p>Look for the definition of <code class="docutils literal notranslate"><span class="pre">USER_MOTOR</span></code> and change it to</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#define USER_MOTOR MY_MOTOR</span>
+</pre></div>
+</div>
+</li>
+<li><p>Below this, there is a <code class="docutils literal notranslate"><span class="pre">#if/#elif</span></code>-block that defines the parameters of
+the motors. Simply add an <code class="docutils literal notranslate"><span class="pre">#elif</span></code> block for your motor (assuming you are
+using a brushless motor):</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#elif (USER_MOTOR == MY_MOTOR)</span>
+<span class="cp">#define USER_MOTOR_TYPE MOTOR_Type_Pm</span>
+<span class="cp">#define USER_MOTOR_NUM_POLE_PAIRS (4)</span>
+<span class="cp">#define USER_MOTOR_Rr (NULL)</span>
+<span class="cp">#define USER_MOTOR_Rs (NULL)</span>
+<span class="cp">#define USER_MOTOR_Ls_d (NULL)</span>
+<span class="cp">#define USER_MOTOR_Ls_q (NULL)</span>
+<span class="cp">#define USER_MOTOR_RATED_FLUX (NULL)</span>
+<span class="cp">#define USER_MOTOR_MAGNETIZING_CURRENT (NULL)</span>
+<span class="cp">#define USER_MOTOR_RES_EST_CURRENT (1.0)</span>
+<span class="cp">#define USER_MOTOR_IND_EST_CURRENT (-1.0)</span>
+<span class="cp">#define USER_MOTOR_MAX_CURRENT (3.0)</span>
+<span class="cp">#define USER_MOTOR_FLUX_EST_FREQ_Hz (20.0)</span>
+<span class="cp">#define USER_MOTOR_ENCODER_LINES (5000.0)</span>
+</pre></div>
+</div>
+<p>A few values can already be put into the motor parameters.</p>
+<ul>
+<li><p>USER_MOTOR_TYPE = MOTOR_Type_Pm or MOTOR_Type_Induction. Motor
+type must be known and entered in this parameter.  “Pm” is short for
+“permanent magnet” and refers to the BLDC motors that are used in the
+ODRI robots.</p></li>
+<li><p>USER_MOTOR_NUM_POLE_PAIRS: Number of pole pairs of the motor</p></li>
+<li><p>USER_MOTOR_MAX_CURRENT: Maximum nameplate current of the motor</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The current is actually not limited by this parameter when using
+the torque controller! When running the motor, It may be fine to
+exceed this value for a short time but keep in mind that the motor
+will overheat very fast.</p>
+</div>
+</li>
+<li><p>USER_MOTOR_RES_EST_CURRENT: The motor will have to initially be
+started in open loop during identification. This value sets the peak
+of the current used during initial startup of the motor. If the motor
+has high cogging torque or some kind of load, increase this current
+value until the motor will start spinning. This value is also used
+for the motor-encoder-alignment.</p></li>
+<li><p>USER_MOTOR_IND_EST_CURRENT: Must be zero for ACIM motors. For
+PMSM motors this value can be set to the negative of the current used
+for USER_MOTOR_RES_EST_CURRENT.</p></li>
+<li><p>USER_MOTOR_RATED_FLUX: Must be zero for PMSM motors.</p></li>
+<li><p>USER_MOTOR_FLUX_EST_FREQ_Hz: A starting point for this frequency
+if the motor is a PMSM motor is 20.0 Hz, and if it is an ACIM motor,
+a good starting point is 5.0 Hz.</p></li>
+<li><p>USER_MOTOR_ENCODER_LINES: Number of lines per revolution of the
+encoder. Note that this is the raw number of lines, not the result of
+the quadrature! I.e. an encoder with 5000 lines will actually provide
+20k counts due to quadrature.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is an excel spreadsheet to help setup user.h parameters based on
+motor parameters, control frequencies, filter poles, etc. It can be
+found in MotorWare: Resources &gt; Training: User’s Guides, Labs,
+Tutorials &gt; InstaSPIN Projects Setting User Variables &gt;
+motorware_selecting_user_variables.xlsx.</p>
+</div>
+<p>Later in the lab after the motor parameters are identified, the
+appropriate NULL values will be updated with the identified values. One
+thing to note is that this motor is defined to be a permanent magnet
+motor. The terms “Magnetizing Current” and “Rr” are not needed for a PM
+motor model and therefore will always be left NULL. Also note that the
+inverter has already been defined. In the top half of the user.h file,
+there are definitions for currents and voltages, clocks and timers, and
+poles. These definitions are used to setup current, voltage scaling and
+filter parameters for the library.</p>
+</li>
+</ol>
+</li>
+<li><p>If everything is set up in the user files, compile &amp; run the project (see the
+instructions on <a class="reference external" href="https://atlas.is.localnet/confluence/display/AMDW/How+to+run+a+CCS+Project+on+the+LaunchPad">How to run a CCS Project on the LaunchPad</a>).</p></li>
+<li><p>You can use the Single Motor GUI from <a class="reference external" href="https://github.com/open-dynamic-robot-initiative/mw_gui_universal">mw_gui_universal</a></p>
+<ol class="loweralpha">
+<li><p>Open the “Motor ID” tab</p></li>
+<li><p>Press the buttons “Enable System” and “Run Motor ID” at the top of the
+window. The motor will now start to make some noises and hopefully spin
+for a while. Note: don’t worry if it complains about not finding spinTAC
+stuff, that isn’t used in this lab.</p></li>
+<li><p>When the process is finished, the motor will automatically stop and the
+“Motor Identified” checkbox will be checked:</p>
+<img alt="_images/gui_motor_id_finished.png" src="_images/gui_motor_id_finished.png" />
+</li>
+<li><p>When finished, copy the values of the “Motor Parameters” pane to the
+<code class="docutils literal notranslate"><span class="pre">user_j*.h</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">user_j*.h</span></code> files are only used by the single motor applications.
+As we usually run dual motor applications on the board, make sure you
+also add the new motor in the <code class="docutils literal notranslate"><span class="pre">user_mtr_on_j*.h</span></code> which are used by
+these applications.</p>
+<p>When adding motors to <code class="docutils literal notranslate"><span class="pre">user_mtr_on_j5.h</span></code> make sure to add the suffix
+“_2” to all defines.</p>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="lab12a-id-rotor-inertia-and-shaft-resistance">
+<h2>Lab12a: ID rotor inertia and shaft resistance<a class="headerlink" href="#lab12a-id-rotor-inertia-and-shaft-resistance" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this lab the motor will</p>
+<ul class="simple">
+<li><p>Spin really fast for about a second</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As far as I know, the values determined by this lab are only used by the
+SpinTAC controllers. If you are not using them (they are not used in the
+ODRI firmware), they should not be needed.</p>
+</div>
+<p>Follow the same basic procedure as in Lab02b, including the motor ID steps from
+lab02, and then also activate SpinTAC.VelIdRun.</p>
+<p>Do this, everytime the mechanical setup changes (i.e. the mass that is rotated
+by the motor). Note, however, that this procedure requries the motor to spin
+freely, so it cannot be done with the leg!</p>
+</section>
+<section id="inverter-board-offsets">
+<h2>Inverter Board Offsets<a class="headerlink" href="#inverter-board-offsets" title="Permalink to this headline">¶</a></h2>
+<p>This should be done whenever a new inverter board is used. Follow the
+instructions above for motor parameter identification (make sure you
+select the correct inverter board slot (J1 or J5) in user.h). Instead of
+the motor parameters (Rs, Ls, …) this time we are interested in the
+current and voltage offsets (the values in the “Inverter Offsets” pane).
+Copy them to the <code class="docutils literal notranslate"><span class="pre">user_j*.h</span></code> (these values are defined in the section
+“CURRENTS AND VOLTAGES” at the top of the file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ideally these offsets should be calibrated for each inverter board
+individually.  However, we are using the same values (determined with one
+board in the beginning) on all our robots and it seems to be working fine.</p>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">ODRI Motor Board Configuration</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Motor Paramter Identification</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to ODRI Motor Board Configuration’s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Max Planck Society.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/motor_id.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
