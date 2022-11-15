@@ -31,13 +31,7 @@ Note: In `user_mtr_on_j5.h` the names of all defines have to be suffixed with
 `_2`!
 
 
-This design of the configuration files is very confusing and leads to lots of
-code duplication (motor parameters have to be copied to all four `*_j?.h`
-files).  We should change this to a better structure...
-
-
-For more information on the configuration files, see the Confluence Wiki:
-https://atlas.is.localnet/confluence/display/AMDW/InstaSPIN+Configuration+Files
+For more information see https://open-dynamic-robot-initiative.github.io/user_config_f28069m_drv8305.
 
 
 License
