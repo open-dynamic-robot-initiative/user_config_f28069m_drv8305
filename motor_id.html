@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Motor Paramter Identification &#8212; ODRI Motor Board Configuration 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,7 +12,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Welcome to ODRI Motor Board Configuration’s documentation!" href="index.html" />
@@ -33,7 +35,7 @@
           <div class="body" role="main">
             
   <section id="motor-paramter-identification">
-<h1>Motor Paramter Identification<a class="headerlink" href="#motor-paramter-identification" title="Permalink to this headline">¶</a></h1>
+<h1>Motor Paramter Identification<a class="headerlink" href="#motor-paramter-identification" title="Permalink to this heading">¶</a></h1>
 <p>When getting a new motor, inverter board or encoder, some parameters have to be
 specified to allow good control. The InstaSPIN package contains procedures to
 automatically determine these parameters.</p>
@@ -48,7 +50,7 @@ the LaunchPad you are using). For running the dual_motor_torque_ctrl firmware
 you’ll need to copy everything to user_mtr_on_j1.h / user_mtr_on_j15.h as
 well.</p>
 <section id="lab-02b-id-motor-resistance-and-inductance">
-<h2>Lab 02b: ID motor resistance and inductance<a class="headerlink" href="#lab-02b-id-motor-resistance-and-inductance" title="Permalink to this headline">¶</a></h2>
+<h2>Lab 02b: ID motor resistance and inductance<a class="headerlink" href="#lab-02b-id-motor-resistance-and-inductance" title="Permalink to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this lab, the motor will</p>
@@ -207,7 +209,7 @@ these applications.</p>
 </ol>
 </section>
 <section id="lab12a-id-rotor-inertia-and-shaft-resistance">
-<h2>Lab12a: ID rotor inertia and shaft resistance<a class="headerlink" href="#lab12a-id-rotor-inertia-and-shaft-resistance" title="Permalink to this headline">¶</a></h2>
+<h2>Lab12a: ID rotor inertia and shaft resistance<a class="headerlink" href="#lab12a-id-rotor-inertia-and-shaft-resistance" title="Permalink to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this lab the motor will</p>
@@ -228,7 +230,7 @@ by the motor). Note, however, that this procedure requries the motor to spin
 freely, so it cannot be done with the leg!</p>
 </section>
 <section id="inverter-board-offsets">
-<h2>Inverter Board Offsets<a class="headerlink" href="#inverter-board-offsets" title="Permalink to this headline">¶</a></h2>
+<h2>Inverter Board Offsets<a class="headerlink" href="#inverter-board-offsets" title="Permalink to this heading">¶</a></h2>
 <p>This should be done whenever a new inverter board is used. Follow the
 instructions above for motor parameter identification (make sure you
 select the correct inverter board slot (J1 or J5) in user.h). Instead of
@@ -283,7 +285,7 @@ board in the beginning) on all our robots and it seems to be working fine.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -292,7 +294,7 @@ board in the beginning) on all our robots and it seems to be working fine.</p>
       &copy;2021, Max Planck Society.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
